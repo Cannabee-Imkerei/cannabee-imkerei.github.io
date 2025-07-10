@@ -60,6 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Fehler beim Laden der Blogdaten:', error);
-            container.innerHTML = '<p class="text-danger">Fehler beim Laden der Blogdaten.</p>';
+            container.innerHTML = '<p class="text-danger text-center border border-danger rounded p-3">Fehler beim Laden der Blogdaten.</p>';
         });
 });

@@ -96,14 +96,21 @@
             </div>
         </section>
 
-        <select id="filterSelect" class="form-select w-auto mb-4">
-            <option value="newest" selected>Neueste zuerst</option>
-            <option value="oldest">Älteste zuerst</option>
-            <option value="anleitung">Anleitung</option>
-        </select>
-
         <section class="container py-5">
-            <h2 class="text-center mb-4">📝 Unsere Blogbeiträge</h2>
+            <div class="row align-items-center mb-4">
+                <div class="col-4"><!-- leer --></div>
+                <div class="col-4 text-center">
+                    <h2 class="mb-0">📝 Unsere Blogbeiträge</h2>
+                </div>
+                <div class="col-4 text-end">
+                    <select id="filterSelect" class="form-select w-auto d-inline-block">
+                        <option value="newest" selected>Neueste zuerst</option>
+                        <option value="oldest">Älteste zuerst</option>
+                        <option value="anleitung">Anleitung</option>
+                    </select>
+                </div>
+            </div>
+
             <div id="blogContainer" class="row g-4 justify-content-center">
                 <!-- Dynamisch per JavaScript -->
             </div>
