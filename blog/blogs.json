@@ -5,5 +5,12 @@
     "excerpt": "Wir stellen unsere Imkerei vor, sowie unsere Art zu imkern, unsere Mittel und Gründe dafür. Abgerundet mit schönen Zitaten bekannter Bienenliebhaber.",
     "thumbnail": "../hero.jpg",
     "type": "beitrag"
+  },
+  {
+    "slug": "blog_002",
+    "title": "Mensch, Honigbienen und Wildbienen",
+    "excerpt": "Heute reden wir über Menschen, Honigbienen und Wildbienen. Deren zusammenleben...oder doch gegeneinander?",
+    "thumbnail": "../hero.jpg",
+    "type": "beitrag"
   }
 ]
