@@ -114,37 +114,37 @@
                 Oder doch einfach nur mal mit unserem Team sprechen?</h2>
             <p class="text-center mb-4">Dann melde dich gerne übers Formular.</p>
 
-            <form id="kontaktForm" class="row g-3">
-                <div class="row">
+            <form id="kontaktForm" class="row g-3 justify-content-center">
+                <div class="row justify-content-center">
                     <!-- Name -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="vorname" class="form-label" style="font-weight: bold;">Vorname</label>
                         <input type="text" class="form-control halb-transparent" id="vorname" required>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="nachname" class="form-label" style="font-weight: bold;">Nachname</label>
                         <input type="text" class="form-control halb-transparent" id="nachname" required>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row justify-content-center">
                     <!-- Telefonnummer -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="handy" class="form-label" style="font-weight: bold;">Handynummer</label>
                         <input type="tel" class="form-control halb-transparent" id="handy" required>
                     </div>
 
                     <!-- Email-Adresse -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="email" class="form-label" style="font-weight: bold;">Deine E-Mail</label>
                         <input type="email" id="email" name="email" class="form-control halb-transparent"
                             placeholder="z.B. max@beispiel.de" required>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row justify-content-center">
                     <!-- Anfrage-Typ -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="anfrageArt" class="form-label" style="font-weight: bold;">Was möchtest du?</label>
                         <select id="anfrageArt" class="form-select halb-transparent" required>
                             <option selected disabled value="">Bitte auswählen...</option>
@@ -155,7 +155,7 @@
                     </div>
 
                     <!-- Kalender -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="datum" class="form-label" style="font-weight: bold;">Wunschtermin</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
@@ -165,15 +165,21 @@
                     </div>
                 </div>
 
-                <!-- Nachricht -->
-                <div class="col-12">
-                    <label for="nachricht" class="form-label" style="font-weight: bold;">Beschreiben Sie Ihr Anliegen bitte kurz</label>
-                    <textarea class="form-control halb-transparent" id="nachricht" rows="4" style="resize: none;" required ></textarea>
-                </div>
+                <div class="d-flex justify-content-center align-items-end">
+                    <!-- Wrapper für Textarea & Button -->
+                    <div class="d-flex align-items-end gap-5">
+                        <!-- Textarea -->
+                        <div>
+                            <label for="nachricht" class="form-label fw-bold">Beschreiben Sie Ihr Anliegen bitte</label>
+                            <textarea class="form-control halb-transparent" id="nachricht" rows="4"
+                                style="resize: none; width: 800px;" required></textarea>
+                        </div>
 
-                <!-- Submit -->
-                <div class="col-12 text-end">
-                    <button type="submit" class="btn btn-primary">Absenden</button>
+                        <!-- Button rechts unten -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Absenden</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>
