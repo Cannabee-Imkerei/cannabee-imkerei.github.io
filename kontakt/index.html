@@ -164,20 +164,17 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center align-items-end">
-                    <!-- Wrapper für Textarea & Button -->
-                    <div class="d-flex align-items-end gap-5">
-                        <!-- Textarea -->
-                        <div>
-                            <label for="nachricht" class="form-label fw-bold">Beschreiben Sie Ihr Anliegen bitte</label>
-                            <textarea class="form-control halb-transparent" id="nachricht" rows="4"
-                                style="resize: none; width: 800px;" required></textarea>
-                        </div>
+                <div class="row justify-content-center">
+                    <!-- Textarea -->
+                    <div class="col-md-4 mb-3">
+                        <label for="nachricht" class="form-label fw-bold">Beschreiben Sie Ihr Anliegen bitte</label>
+                        <textarea class="form-control halb-transparent" id="nachricht" rows="4"
+                            style="resize: none; min-width: 170%;" required></textarea>
+                    </div>
 
-                        <!-- Button rechts unten -->
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Absenden</button>
-                        </div>
+                    <!-- Button rechts unten -->
+                    <div class="col-md-4 mb-3 text-end align-self-end">
+                        <button type="submit" class="btn btn-primary">Absenden</button>
                     </div>
                 </div>
             </form>

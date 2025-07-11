@@ -23,8 +23,8 @@ function createHive() {
     lottiePlayer.style.width = "200px";
     lottiePlayer.style.height = "200px";
     lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "55%";
-    lottiePlayer.style.left = "50%";
+    lottiePlayer.style.top = "53vh";
+    lottiePlayer.style.left = "47vw";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
     lottiePlayer.classList.add("ignore-z");
@@ -44,8 +44,8 @@ function createBeeToHive() {
     lottiePlayer.style.width = "200px";
     lottiePlayer.style.height = "200px";
     lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "55%";
-    lottiePlayer.style.left = "45%";
+    lottiePlayer.style.top = "53vh";
+    lottiePlayer.style.left = "42vw";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
     lottiePlayer.classList.add("ignore-z");
