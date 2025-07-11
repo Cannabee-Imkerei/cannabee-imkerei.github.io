@@ -3,5 +3,5 @@ lottie.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: 'animations/Hive.lottie'
+    path: '/animations/Hive.lottie'
 });
