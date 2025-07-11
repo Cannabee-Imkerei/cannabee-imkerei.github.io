@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lottiePlayer.style.position = "absolute";
         lottiePlayer.style.top = "50%";
         lottiePlayer.style.left = "50%";
-        lottiePlayer.style.transform = "translateX(-50%) scale(1)";
+        lottiePlayer.style.transform = "translateX(-50%) scale(0.8)";
         lottiePlayer.style.zIndex = "0";
 
         // Append to container
