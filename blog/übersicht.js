@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Initial laden mit Default "neueste zuerst"
-            renderBlogs(filterAndSortBlogs('newest'));
+            renderBlogs(filterAndSortBlogs(filterSelect.value));
         })
         .catch(error => {
             console.error('Fehler beim Laden der Blogdaten:', error);
