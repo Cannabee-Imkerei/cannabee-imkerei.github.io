@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Set background
         content_container.style.backgroundImage = `url('${backgroundPath}')`;
         content_container.style.backgroundSize = "cover";
-        content_container.style.backgroundPosition = "center";
+        content_container.style.backgroundPosition = "bottom center";
         content_container.style.backgroundRepeat = "no-repeat";
 
         // Create lottie-player
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
         lottiePlayer.setAttribute("loop", "");
         lottiePlayer.setAttribute("autoplay", "");
 
-        lottiePlayer.style.width = "300px";
-        lottiePlayer.style.height = "300px";
+        lottiePlayer.style.width = "400px";
+        lottiePlayer.style.height = "400px";
         lottiePlayer.style.position = "absolute";
-        lottiePlayer.style.top = "25%";
+        lottiePlayer.style.top = "50%";
         lottiePlayer.style.left = "50%";
-        lottiePlayer.style.transform = "translateX(-50%) scale(0.7)";
-        lottiePlayer.style.zIndex = "1";
+        lottiePlayer.style.transform = "translateX(-50%) scale(1)";
+        lottiePlayer.style.zIndex = "0";
 
         // Append to container
         content_container.appendChild(lottiePlayer);
