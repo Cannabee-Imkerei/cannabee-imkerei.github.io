@@ -28,5 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Append to container
         content_container.appendChild(lottiePlayer);
+
+        // Set z-index 1 for all other children
+        Array.from(content_container.children).forEach(child => {
+            if (child !== lottiePlayer) {
+                // Falls die Elemente noch keine Position haben, ggf. 'relative' setzen:
+                if (getComputedStyle(child).position === 'static') {
+                    child.style.position = 'relative';
+                }
+                child.style.zIndex = '1';
+            }
+        });
     }
 });
