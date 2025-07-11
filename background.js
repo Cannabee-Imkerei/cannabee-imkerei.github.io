@@ -1,8 +1,6 @@
 function initChildren(content_container) {
-    // Set z-index 1 for all other children
     Array.from(content_container.children).forEach(child => {
-        if (child !== lottiePlayer) {
-            // Falls die Elemente noch keine Position haben, ggf. 'relative' setzen:
+        if (!child.classList.contains("ignore-z")) {
             if (getComputedStyle(child).position === 'static') {
                 child.style.position = 'relative';
             }
@@ -27,6 +25,7 @@ function createHive() {
     lottiePlayer.style.left = "50%";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
+    lottiePlayer.classList.add("ignore-z");
 
     return lottiePlayer;
 }
@@ -47,6 +46,7 @@ function createBeeToHive() {
     lottiePlayer.style.left = "45%";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
+    lottiePlayer.classList.add("ignore-z");
 
     return lottiePlayer;
 }
