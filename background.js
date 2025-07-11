@@ -1,3 +1,5 @@
+const animationPath = "/animations/";
+
 function initChildren(content_container) {
     Array.from(content_container.children).forEach(child => {
         if (!child.classList.contains("ignore-z")) {
@@ -53,7 +55,6 @@ function createBeeToHive() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const content_container = document.getElementById("content-container");
-    const animationPath = "/animations/";
     const backgroundPath = animationPath + "Background.png";
 
     if (content_container) {
