@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
         lottiePlayer.setAttribute("loop", "");
         lottiePlayer.setAttribute("autoplay", "");
 
-        lottiePlayer.style.width = "400px";
-        lottiePlayer.style.height = "400px";
+        lottiePlayer.style.width = "200px";
+        lottiePlayer.style.height = "200px";
         lottiePlayer.style.position = "absolute";
-        lottiePlayer.style.top = "35%";
+        lottiePlayer.style.top = "60%";
         lottiePlayer.style.left = "50%";
-        lottiePlayer.style.transform = "translateX(-50%) scale(0.8)";
+        lottiePlayer.style.transform = "translateX(-50%) scale(1)";
         lottiePlayer.style.zIndex = "0";
 
         // Append to container
