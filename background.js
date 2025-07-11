@@ -66,8 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
         content_container.style.backgroundRepeat = "no-repeat";
 
         const hive = createHive();
+        const beeToHive = createBeeToHive();
 
         // Append to container
         content_container.appendChild(hive);
+        content_container.appendChild(beeToHive);
     }
 });
