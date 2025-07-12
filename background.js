@@ -23,8 +23,8 @@ function createHive() {
     lottiePlayer.style.width = "200px";
     lottiePlayer.style.height = "200px";
     lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "53%";
-    lottiePlayer.style.left = "47%";
+    lottiePlayer.style.top = "50%";
+    lottiePlayer.style.left = "50%";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
     lottiePlayer.classList.add("ignore-z");
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         // Logisches Grid
-        const cellWidth = 200;
-        const cellHeight = 200;
+        const cellWidth = 100;
+        const cellHeight = 100;
         const cols = Math.floor(canvas.width / cellWidth);
         const rows = Math.floor(canvas.height / cellHeight);
 
