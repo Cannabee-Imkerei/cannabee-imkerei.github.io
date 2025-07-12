@@ -66,6 +66,50 @@
         .halb-transparent {
             opacity: 0.75;
         }
+
+        /* Hintergrundbild */
+        .background-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Standard Position Desktop */
+        .hive-anim,
+        .bee-anim {
+            position: absolute;
+            width: 10vw;
+            height: auto;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Position Hive */
+        .hive-anim {
+            top: 53vh;
+            left: 47vw;
+        }
+
+        /* Position Bee */
+        .bee-anim {
+            top: 53vh;
+            left: 42vw;
+        }
+
+        /* Responsive Anpassung für Mobil */
+        @media (max-width: 768px) {
+            .hive-anim {
+                top: 72vh;
+                left: 50vw;
+                width: 18vw;
+            }
+
+            .bee-anim {
+                top: 68vh;
+                left: 42vw;
+                width: 16vw;
+            }
+        }
     </style>
 </head>
 
@@ -167,8 +211,8 @@
                 <!-- Textarea -->
                 <div class="col-md-4 mb-3">
                     <label for="nachricht" class="form-label fw-bold">Beschreiben Sie Ihr Anliegen bitte</label>
-                    <textarea class="form-control halb-transparent" id="nachricht" rows="4"
-                        style="resize: none;" required></textarea>
+                    <textarea class="form-control halb-transparent" id="nachricht" rows="4" style="resize: none;"
+                        required></textarea>
                 </div>
 
                 <!-- Button rechts unten -->

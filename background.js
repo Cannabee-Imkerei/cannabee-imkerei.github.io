@@ -12,44 +12,24 @@ function initChildren(content_container) {
 }
 
 function createHive() {
-    // Create Hive Anim
     const lottiePlayer = document.createElement("lottie-player");
     lottiePlayer.src = animationPath + "Hive.json";
     lottiePlayer.setAttribute("background", "transparent");
     lottiePlayer.setAttribute("speed", "1");
     lottiePlayer.setAttribute("loop", "");
     lottiePlayer.setAttribute("autoplay", "");
-
-    lottiePlayer.style.width = "200px";
-    lottiePlayer.style.height = "200px";
-    lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "53vh";
-    lottiePlayer.style.left = "47vw";
-    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
-    lottiePlayer.style.zIndex = "0";
-    lottiePlayer.classList.add("ignore-z");
-
+    lottiePlayer.classList.add("hive-anim", "ignore-z");
     return lottiePlayer;
 }
 
 function createBeeToHive() {
-    // Create Hive Anim
     const lottiePlayer = document.createElement("lottie-player");
     lottiePlayer.src = animationPath + "Bee_to_Hive.json";
     lottiePlayer.setAttribute("background", "transparent");
     lottiePlayer.setAttribute("speed", "1");
     lottiePlayer.setAttribute("loop", "");
     lottiePlayer.setAttribute("autoplay", "");
-
-    lottiePlayer.style.width = "200px";
-    lottiePlayer.style.height = "200px";
-    lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "53vh";
-    lottiePlayer.style.left = "42vw";
-    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
-    lottiePlayer.style.zIndex = "0";
-    lottiePlayer.classList.add("ignore-z");
-
+    lottiePlayer.classList.add("bee-anim", "ignore-z");
     return lottiePlayer;
 }
 
@@ -58,18 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const backgroundPath = animationPath + "Background.png";
 
     if (content_container) {
-        initChildren(content_container);
+        // Set container style
+        content_container.style.position = "relative";
+        content_container.style.overflow = "hidden";
 
-        // Set background
-        content_container.style.backgroundImage = `url('${backgroundPath}')`;
-        content_container.style.backgroundSize = "cover";
-        content_container.style.backgroundPosition = "bottom center";
-        content_container.style.backgroundRepeat = "no-repeat";
+        const bgImage = document.createElement("img");
+        bgImage.src = backgroundPath;
+        bgImage.alt = "Wiese";
+        bgImage.classList.add("background-image");
+        content_container.appendChild(bgImage);
+
+        initChildren(content_container);
 
         const hive = createHive();
         const beeToHive = createBeeToHive();
 
-        // Append to container
         content_container.appendChild(hive);
         content_container.appendChild(beeToHive);
     }
