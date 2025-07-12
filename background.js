@@ -11,25 +11,14 @@ function initChildren(content_container) {
     });
 }
 
-function createHive() {
+function createAnim(src, klasse) {
     const lottiePlayer = document.createElement("lottie-player");
-    lottiePlayer.src = animationPath + "Hive.json";
+    lottiePlayer.src = `${animationPath}${src}.json`;
     lottiePlayer.setAttribute("background", "transparent");
     lottiePlayer.setAttribute("speed", "1");
     lottiePlayer.setAttribute("loop", "");
     lottiePlayer.setAttribute("autoplay", "");
-    lottiePlayer.classList.add("hive-anim", "ignore-z");
-    return lottiePlayer;
-}
-
-function createBeeToHive() {
-    const lottiePlayer = document.createElement("lottie-player");
-    lottiePlayer.src = animationPath + "Bee_to_Hive.json";
-    lottiePlayer.setAttribute("background", "transparent");
-    lottiePlayer.setAttribute("speed", "1");
-    lottiePlayer.setAttribute("loop", "");
-    lottiePlayer.setAttribute("autoplay", "");
-    lottiePlayer.classList.add("bee-anim", "ignore-z");
+    lottiePlayer.classList.add(`${klasse}`, "ignore-z");
     return lottiePlayer;
 }
 
@@ -50,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         initChildren(content_container);
 
-        const hive = createHive();
-        const beeToHive = createBeeToHive();
+        const hive = createAnim("Hive", "hive-anim");
+        const beeToHive = createAnim("Bee_to_Hive", "bee-anim");
 
         content_container.appendChild(hive);
         content_container.appendChild(beeToHive);
