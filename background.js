@@ -23,8 +23,29 @@ function createHive() {
     lottiePlayer.style.width = "200px";
     lottiePlayer.style.height = "200px";
     lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "50%";
-    lottiePlayer.style.left = "50%";
+    lottiePlayer.style.top = "53vh";
+    lottiePlayer.style.left = "47vw";
+    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
+    lottiePlayer.style.zIndex = "0";
+    lottiePlayer.classList.add("ignore-z");
+
+    return lottiePlayer;
+}
+
+function createBeeToHive() {
+    // Create Hive Anim
+    const lottiePlayer = document.createElement("lottie-player");
+    lottiePlayer.src = animationPath + "Bee_to_Hive.json";
+    lottiePlayer.setAttribute("background", "transparent");
+    lottiePlayer.setAttribute("speed", "1");
+    lottiePlayer.setAttribute("loop", "");
+    lottiePlayer.setAttribute("autoplay", "");
+
+    lottiePlayer.style.width = "200px";
+    lottiePlayer.style.height = "200px";
+    lottiePlayer.style.position = "absolute";
+    lottiePlayer.style.top = "53vh";
+    lottiePlayer.style.left = "42vw";
     lottiePlayer.style.transform = "translateX(-50%) scale(1)";
     lottiePlayer.style.zIndex = "0";
     lottiePlayer.classList.add("ignore-z");
@@ -34,62 +55,22 @@ function createHive() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const content_container = document.getElementById("content-container");
-    if (!content_container) return;
-
-    // Init DOM
-    initChildren(content_container);
-
-    // Canvas erstellen und einfügen
-    const canvas = document.createElement("canvas");
-    canvas.id = "background-canvas";
-    canvas.className = "w-100 h-100 position-absolute top-0 start-0";
-    canvas.style.zIndex = "0";
-    content_container.appendChild(canvas);
-
-    const ctx = canvas.getContext("2d");
-
     const backgroundPath = animationPath + "Background.png";
-    const backgroundImage = new Image();
-    backgroundImage.src = backgroundPath;
 
-    // Hive erstellen und einfügen
-    const hive = createHive();
-    hive.style.position = "absolute";
-    hive.style.zIndex = "1";
-    content_container.appendChild(hive);
+    if (content_container) {
+        initChildren(content_container);
 
-    function resizeCanvasAndPosition() {
-        // Canvas auf Containergröße anpassen
-        canvas.width = content_container.clientWidth;
-        canvas.height = content_container.clientHeight;
+        // Set background
+        content_container.style.backgroundImage = `url('${backgroundPath}')`;
+        content_container.style.backgroundSize = "cover";
+        content_container.style.backgroundPosition = "bottom center";
+        content_container.style.backgroundRepeat = "no-repeat";
 
-        // Hintergrund zeichnen
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        const hive = createHive();
+        const beeToHive = createBeeToHive();
 
-        // Logisches Grid
-        const cellWidth = 100;
-        const cellHeight = 100;
-        const cols = Math.floor(canvas.width / cellWidth);
-        const rows = Math.floor(canvas.height / cellHeight);
-
-        // Ziel: Mitte im unteren Drittel
-        const targetCol = Math.floor(cols / 2);
-        const targetRow = Math.floor(rows * 2 / 3);
-
-        // Position Hive basierend auf Grid-Zelle
-        const x = targetCol * cellWidth + cellWidth / 2;
-        const y = targetRow * cellHeight + cellHeight / 2;
-
-        hive.style.left = `${x}px`;
-        hive.style.top = `${y}px`;
-        hive.style.transform = "translate(-50%, -50%)";
+        // Append to container
+        content_container.appendChild(hive);
+        content_container.appendChild(beeToHive);
     }
-
-    // Wenn Bild geladen, canvas zeichnen und Hive positionieren
-    backgroundImage.onload = () => {
-        resizeCanvasAndPosition();
-    };
-
-    window.addEventListener("resize", resizeCanvasAndPosition);
 });
