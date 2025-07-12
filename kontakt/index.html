@@ -69,9 +69,15 @@
 
         /* Hintergrundbild */
         .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom center;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Standard Position Desktop */
