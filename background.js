@@ -6,7 +6,7 @@ function initChildren(content_container) {
             if (getComputedStyle(child).position === 'static') {
                 child.style.position = 'relative';
             }
-            child.style.zIndex = '1';
+            child.style.zIndex = '2';
         }
     });
 }
@@ -25,7 +25,7 @@ function createLottie(src, xPercent, yPercent) {
     lottie.style.left = `${xPercent * 100}%`;
     lottie.style.top = `${yPercent * 100}%`;
     lottie.style.transform = "translate(-50%, -50%)";
-    lottie.style.zIndex = "2";
+    lottie.style.zIndex = "1";
     lottie.classList.add("ignore-z");
 
     return lottie;
@@ -39,32 +39,43 @@ document.addEventListener("DOMContentLoaded", () => {
         initChildren(content_container);
 
         // styles fürs Bild festlegen
+        // Set styles
         content_container.style.position = "relative";
         content_container.style.overflow = "hidden";
 
-        const imageWrapper = document.createElement("div");
-        imageWrapper.style.position = "relative";
-        imageWrapper.style.width = "100%";
-        imageWrapper.style.height = "100vh"; // Fullscreen-Höhe
-        imageWrapper.style.overflow = "hidden";
-
+        // Hintergrundbild als Element
         const img = document.createElement("img");
         img.src = backgroundPath;
         img.style.position = "absolute";
+        img.style.bottom = "0";
+        img.style.left = "50%";
+        img.style.transform = "translateX(-50%)";
         img.style.width = "100%";
-        img.style.height = "100%";
+        img.style.height = "auto";
         img.style.objectFit = "cover";
         img.style.objectPosition = "bottom center";
         img.style.zIndex = "0";
         img.style.pointerEvents = "none";
+        img.classList.add("ignore-z");
 
-        // Lotties exakt relativ zum Bild positioniert
+        // Container für Lotties
+        const overlay = document.createElement("div");
+        overlay.style.position = "absolute";
+        overlay.style.bottom = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "auto";
+        overlay.style.zIndex = "1";
+        overlay.style.pointerEvents = "none";
+
+        // Lotties platzieren (mit Prozent-Koordinaten relativ zum Bild!)
         const hive = createLottie("Hive.json", 0.47, 0.67);
         const bee = createLottie("Bee_to_Hive.json", 0.42, 0.68);
 
-        imageWrapper.appendChild(img);
-        imageWrapper.appendChild(hive);
-        imageWrapper.appendChild(bee);
-        content_container.appendChild(imageWrapper);
+        overlay.appendChild(hive);
+        overlay.appendChild(bee);
+
+        content_container.appendChild(img);
+        content_container.appendChild(overlay);
     }
 });
