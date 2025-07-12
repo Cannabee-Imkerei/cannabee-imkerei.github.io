@@ -11,46 +11,24 @@ function initChildren(content_container) {
     });
 }
 
-function createHive() {
-    // Create Hive Anim
-    const lottiePlayer = document.createElement("lottie-player");
-    lottiePlayer.src = animationPath + "Hive.json";
-    lottiePlayer.setAttribute("background", "transparent");
-    lottiePlayer.setAttribute("speed", "1");
-    lottiePlayer.setAttribute("loop", "");
-    lottiePlayer.setAttribute("autoplay", "");
+function createLottie(src, xPercent, yPercent) {
+    const lottie = document.createElement("lottie-player");
+    lottie.src = animationPath + src;
+    lottie.setAttribute("background", "transparent");
+    lottie.setAttribute("speed", "1");
+    lottie.setAttribute("loop", "");
+    lottie.setAttribute("autoplay", "");
 
-    lottiePlayer.style.width = "200px";
-    lottiePlayer.style.height = "200px";
-    lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "53vh";
-    lottiePlayer.style.left = "47vw";
-    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
-    lottiePlayer.style.zIndex = "0";
-    lottiePlayer.classList.add("ignore-z");
+    lottie.style.width = "150px";
+    lottie.style.height = "150px";
+    lottie.style.position = "absolute";
+    lottie.style.left = `${xPercent * 100}%`;
+    lottie.style.top = `${yPercent * 100}%`;
+    lottie.style.transform = "translate(-50%, -50%)";
+    lottie.style.zIndex = "2";
+    lottie.classList.add("ignore-z");
 
-    return lottiePlayer;
-}
-
-function createBeeToHive() {
-    // Create Hive Anim
-    const lottiePlayer = document.createElement("lottie-player");
-    lottiePlayer.src = animationPath + "Bee_to_Hive.json";
-    lottiePlayer.setAttribute("background", "transparent");
-    lottiePlayer.setAttribute("speed", "1");
-    lottiePlayer.setAttribute("loop", "");
-    lottiePlayer.setAttribute("autoplay", "");
-
-    lottiePlayer.style.width = "200px";
-    lottiePlayer.style.height = "200px";
-    lottiePlayer.style.position = "absolute";
-    lottiePlayer.style.top = "53vh";
-    lottiePlayer.style.left = "42vw";
-    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
-    lottiePlayer.style.zIndex = "0";
-    lottiePlayer.classList.add("ignore-z");
-
-    return lottiePlayer;
+    return lottie;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,17 +38,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (content_container) {
         initChildren(content_container);
 
-        // Set background
-        content_container.style.backgroundImage = `url('${backgroundPath}')`;
-        content_container.style.backgroundSize = "cover";
-        content_container.style.backgroundPosition = "bottom center";
-        content_container.style.backgroundRepeat = "no-repeat";
+        // styles fürs Bild festlegen
+        content_container.style.position = "relative";
+        content_container.style.overflow = "hidden";
 
-        const hive = createHive();
-        const beeToHive = createBeeToHive();
+        const imageWrapper = document.createElement("div");
+        imageWrapper.style.position = "relative";
+        imageWrapper.style.width = "100%";
+        imageWrapper.style.height = "100vh"; // Fullscreen-Höhe
+        imageWrapper.style.overflow = "hidden";
 
-        // Append to container
-        content_container.appendChild(hive);
-        content_container.appendChild(beeToHive);
+        const img = document.createElement("img");
+        img.src = backgroundPath;
+        img.style.position = "absolute";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "cover";
+        img.style.objectPosition = "bottom center";
+        img.style.zIndex = "0";
+        img.style.pointerEvents = "none";
+
+        // Lotties exakt relativ zum Bild positioniert
+        const hive = createLottie("Hive.json", 0.47, 0.67);
+        const bee = createLottie("Bee_to_Hive.json", 0.42, 0.68);
+
+        imageWrapper.appendChild(img);
+        imageWrapper.appendChild(hive);
+        imageWrapper.appendChild(bee);
+        content_container.appendChild(imageWrapper);
     }
 });
