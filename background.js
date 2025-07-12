@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const bgImage = document.createElement("img");
         bgImage.src = backgroundPath;
         bgImage.alt = "Wiese";
-        bgImage.classList.add("background-image");
+        bgImage.classList.add("background-image", "ignore-z");
         content_container.appendChild(bgImage);
 
         initChildren(content_container);
