@@ -36,66 +36,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const content_container = document.getElementById("content-container");
     if (!content_container) return;
 
-    // Init Children (deine bestehende Funktion)
+    // Init DOM
     initChildren(content_container);
 
     // Canvas erstellen und einfügen
     const canvas = document.createElement("canvas");
     canvas.id = "background-canvas";
     canvas.className = "w-100 h-100 position-absolute top-0 start-0";
-    canvas.style.zIndex = "0"; // hinter allem
+    canvas.style.zIndex = "0";
     content_container.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
 
-    // Responsive Größe
-    function resizeCanvas() {
-        canvas.width = content_container.clientWidth;
-        canvas.height = content_container.clientHeight;
-        drawGrid();
-        positionHive();
-    }
+    const backgroundPath = animationPath + "Background.png";
+    const backgroundImage = new Image();
+    backgroundImage.src = backgroundPath;
 
-    // 200x200 Grid zeichnen
-    function drawGrid() {
-        const cellSize = 100;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // ctx.strokeStyle = "#ccc";
-
-        for (let x = 0; x <= canvas.width; x += cellSize) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, canvas.height);
-            ctx.stroke();
-        }
-
-        for (let y = 0; y <= canvas.height; y += cellSize) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(canvas.width, y);
-            ctx.stroke();
-        }
-    }
-
-    // Hive erzeugen und einfügen
+    // Hive erstellen und einfügen
     const hive = createHive();
     hive.style.position = "absolute";
-    hive.style.zIndex = "1"; // über dem Canvas
+    hive.style.zIndex = "1";
     content_container.appendChild(hive);
 
-    // Hive im unteren Drittel zentrieren
-    function positionHive() {
-        const containerHeight = content_container.clientHeight;
-        const hiveHeight = hive.offsetHeight || 100; // Fallback falls noch nicht gerendert
-        const targetY = containerHeight * (2 / 3) + (containerHeight / 6 - hiveHeight / 2);
-        hive.style.left = "50%";
-        hive.style.top = `${targetY}px`;
-        hive.style.transform = "translateX(-50%)";
+    function resizeCanvasAndPosition() {
+        // Canvas auf Containergröße anpassen
+        canvas.width = content_container.clientWidth;
+        canvas.height = content_container.clientHeight;
+
+        // Hintergrund zeichnen
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+        // Logisches Grid
+        const cellWidth = 200;
+        const cellHeight = 200;
+        const cols = Math.floor(canvas.width / cellWidth);
+        const rows = Math.floor(canvas.height / cellHeight);
+
+        // Ziel: Mitte im unteren Drittel
+        const targetCol = Math.floor(cols / 2);
+        const targetRow = Math.floor(rows * 2 / 3);
+
+        // Position Hive basierend auf Grid-Zelle
+        const x = targetCol * cellWidth + cellWidth / 2;
+        const y = targetRow * cellHeight + cellHeight / 2;
+
+        hive.style.left = `${x}px`;
+        hive.style.top = `${y}px`;
+        hive.style.transform = "translate(-50%, -50%)";
     }
 
-    // Initialisierung
-    resizeCanvas();
+    // Wenn Bild geladen, canvas zeichnen und Hive positionieren
+    backgroundImage.onload = () => {
+        resizeCanvasAndPosition();
+    };
 
-    // Bei Resize neu zeichnen
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("resize", resizeCanvasAndPosition);
 });
