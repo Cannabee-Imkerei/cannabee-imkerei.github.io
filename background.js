@@ -6,76 +6,96 @@ function initChildren(content_container) {
             if (getComputedStyle(child).position === 'static') {
                 child.style.position = 'relative';
             }
-            child.style.zIndex = '2';
+            child.style.zIndex = '1';
         }
     });
 }
 
-function createLottie(src, xPercent, yPercent) {
-    const lottie = document.createElement("lottie-player");
-    lottie.src = animationPath + src;
-    lottie.setAttribute("background", "transparent");
-    lottie.setAttribute("speed", "1");
-    lottie.setAttribute("loop", "");
-    lottie.setAttribute("autoplay", "");
+function createHive() {
+    // Create Hive Anim
+    const lottiePlayer = document.createElement("lottie-player");
+    lottiePlayer.src = animationPath + "Hive.json";
+    lottiePlayer.setAttribute("background", "transparent");
+    lottiePlayer.setAttribute("speed", "1");
+    lottiePlayer.setAttribute("loop", "");
+    lottiePlayer.setAttribute("autoplay", "");
 
-    lottie.style.width = "150px";
-    lottie.style.height = "150px";
-    lottie.style.position = "absolute";
-    lottie.style.left = `${xPercent * 100}%`;
-    lottie.style.top = `${yPercent * 100}%`;
-    lottie.style.transform = "translate(-50%, -50%)";
-    lottie.style.zIndex = "1";
-    lottie.classList.add("ignore-z");
+    lottiePlayer.style.width = "200px";
+    lottiePlayer.style.height = "200px";
+    lottiePlayer.style.position = "absolute";
+    lottiePlayer.style.top = "53%";
+    lottiePlayer.style.left = "47%";
+    lottiePlayer.style.transform = "translateX(-50%) scale(1)";
+    lottiePlayer.style.zIndex = "0";
+    lottiePlayer.classList.add("ignore-z");
 
-    return lottie;
+    return lottiePlayer;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const content_container = document.getElementById("content-container");
-    const backgroundPath = animationPath + "Background.png";
+    if (!content_container) return;
 
-    if (content_container) {
-        initChildren(content_container);
+    // Init Children (deine bestehende Funktion)
+    initChildren(content_container);
 
-        // styles fürs Bild festlegen
-        // Set styles
-        content_container.style.position = "relative";
-        content_container.style.overflow = "hidden";
+    // Canvas erstellen und einfügen
+    const canvas = document.createElement("canvas");
+    canvas.id = "background-canvas";
+    canvas.className = "w-100 h-100 position-absolute top-0 start-0";
+    canvas.style.zIndex = "0"; // hinter allem
+    content_container.appendChild(canvas);
 
-        // Hintergrundbild als Element
-        const img = document.createElement("img");
-        img.src = backgroundPath;
-        img.style.position = "absolute";
-        img.style.bottom = "0";
-        img.style.left = "50%";
-        img.style.transform = "translateX(-50%)";
-        img.style.width = "100%";
-        img.style.height = "auto";
-        img.style.objectFit = "cover";
-        img.style.objectPosition = "bottom center";
-        img.style.zIndex = "0";
-        img.style.pointerEvents = "none";
-        img.classList.add("ignore-z");
+    const ctx = canvas.getContext("2d");
 
-        // Container für Lotties
-        const overlay = document.createElement("div");
-        overlay.style.position = "absolute";
-        overlay.style.bottom = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100%";
-        overlay.style.height = "auto";
-        overlay.style.zIndex = "1";
-        overlay.style.pointerEvents = "none";
-
-        // Lotties platzieren (mit Prozent-Koordinaten relativ zum Bild!)
-        const hive = createLottie("Hive.json", 0.47, 0.67);
-        const bee = createLottie("Bee_to_Hive.json", 0.42, 0.68);
-
-        overlay.appendChild(hive);
-        overlay.appendChild(bee);
-
-        content_container.appendChild(img);
-        content_container.appendChild(overlay);
+    // Responsive Größe
+    function resizeCanvas() {
+        canvas.width = content_container.clientWidth;
+        canvas.height = content_container.clientHeight;
+        drawGrid();
+        positionHive();
     }
+
+    // 200x200 Grid zeichnen
+    function drawGrid() {
+        const cellSize = 100;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.strokeStyle = "#ccc";
+
+        for (let x = 0; x <= canvas.width; x += cellSize) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+        }
+
+        for (let y = 0; y <= canvas.height; y += cellSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+        }
+    }
+
+    // Hive erzeugen und einfügen
+    const hive = createHive();
+    hive.style.position = "absolute";
+    hive.style.zIndex = "1"; // über dem Canvas
+    content_container.appendChild(hive);
+
+    // Hive im unteren Drittel zentrieren
+    function positionHive() {
+        const containerHeight = content_container.clientHeight;
+        const hiveHeight = hive.offsetHeight || 100; // Fallback falls noch nicht gerendert
+        const targetY = containerHeight * (2 / 3) + (containerHeight / 6 - hiveHeight / 2);
+        hive.style.left = "50%";
+        hive.style.top = `${targetY}px`;
+        hive.style.transform = "translateX(-50%)";
+    }
+
+    // Initialisierung
+    resizeCanvas();
+
+    // Bei Resize neu zeichnen
+    window.addEventListener("resize", resizeCanvas);
 });
