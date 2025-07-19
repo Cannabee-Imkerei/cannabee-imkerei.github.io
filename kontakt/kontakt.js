@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     select.addEventListener('change', () => {
         const option = select.value;
         if (option === 'honig') {
-            nachricht.placeholder = '3 Gläser Raps, 2 Gläser Robinie, 1 Glas Früchtracht';
+            nachricht.placeholder = 'Zbs.: 3 Gläser Raps, 2 Gläser Robinie, 1 Glas Früchtracht';
         } else if (option === 'workshop') {
-            nachricht.placeholder = 'Kindergarten, 20 Kinder, Musterstadt';
+            nachricht.placeholder = 'Zbs.: Kindergarten, 20 Kinder, Musterstadt';
         } else if (option === 'termin') {
-            nachricht.placeholder = 'Würde gerne mehr über eure Betriebsweise erfahren';
+            nachricht.placeholder = 'Zbs.: Würde gerne mehr über eure Betriebsweise erfahren';
         } else {
             nachricht.placeholder = '';
         }

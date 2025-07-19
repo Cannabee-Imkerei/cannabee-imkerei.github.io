@@ -52,70 +52,6 @@
 
     <!-- Lotti -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <style>
-        .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.6);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .halb-transparent {
-            opacity: 0.75;
-        }
-
-        /* Hintergrundbild */
-        .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: bottom center;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .hive-anim,
-        .bee-anim {
-            position: absolute;
-            width: 12vw;
-            height: auto;
-            z-index: 0;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Position Hive */
-        .hive-anim {
-            top: 62vh;
-            left: 45vw;
-        }
-
-        /* Position Bee */
-        .bee-anim {
-            top: 60vh;
-            left: 42vw;
-        }
-
-        /* Responsive Anpassung für Mobil */
-        @media (max-width: 768px) {
-            .hive-anim {
-                top: 75%;
-                left: 52%;
-                width: 70%;
-            }
-
-            .bee-anim {
-                top: 75%;
-                left: 40%;
-                width: 70%;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -144,11 +80,10 @@
         </nav>
     </header>
 
-    <main style="min-height: 100vh;">
+    <main style="background-color: bisque;">
         <!-- Hero Section -->
         <section class="position-relative text-center"
             style="background: url('../hero.jpg') center center / cover no-repeat; height: 80vh;">
-            <div class="hero-overlay"></div>
             <div
                 class="container px-3 position-relative z-2 d-flex align-items-center justify-content-center h-100 text-white">
                 <div>
@@ -157,7 +92,7 @@
             </div>
         </section>
 
-        <section id="content-container" class="container-fluid py-5 position-relative overflow-hidden">
+        <section id="content-container" class="container py-5">
             <h2 class="text-center" style="font-weight: bold;">Du möchtest Honig? Einen Workshop?<br>
                 Oder doch einfach nur mal mit unserem Team sprechen?</h2>
             <p class="text-center mb-4" style="font-weight: bold;">Dann melde dich gerne übers Formular.</p>
@@ -167,11 +102,11 @@
                     <!-- Name -->
                     <div class="col-md-4 mb-3">
                         <label for="vorname" class="form-label" style="font-weight: bold;">Vorname</label>
-                        <input type="text" class="form-control halb-transparent" id="vorname" required>
+                        <input type="text" class="form-control" id="vorname" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="nachname" class="form-label" style="font-weight: bold;">Nachname</label>
-                        <input type="text" class="form-control halb-transparent" id="nachname" required>
+                        <input type="text" class="form-control" id="nachname" required>
                     </div>
                 </div>
 
@@ -179,13 +114,13 @@
                     <!-- Telefonnummer -->
                     <div class="col-md-4 mb-3">
                         <label for="handy" class="form-label" style="font-weight: bold;">Handynummer</label>
-                        <input type="tel" class="form-control halb-transparent" id="handy" required>
+                        <input type="tel" class="form-control" id="handy" required>
                     </div>
 
                     <!-- Email-Adresse -->
                     <div class="col-md-4 mb-3">
                         <label for="email" class="form-label" style="font-weight: bold;">Deine E-Mail</label>
-                        <input type="email" id="email" name="email" class="form-control halb-transparent"
+                        <input type="email" id="email" name="email" class="form-control"
                             placeholder="z.B. max@beispiel.de" required>
                     </div>
                 </div>
@@ -194,7 +129,7 @@
                     <!-- Anfrage-Typ -->
                     <div class="col-md-4 mb-3">
                         <label for="anfrageArt" class="form-label" style="font-weight: bold;">Was möchtest du?</label>
-                        <select id="anfrageArt" class="form-select halb-transparent" required>
+                        <select id="anfrageArt" class="form-select" required>
                             <option selected disabled value="">Bitte auswählen...</option>
                             <option value="honig">Honig</option>
                             <option value="workshop">Workshop</option>
@@ -207,7 +142,7 @@
                         <label for="datum" class="form-label" style="font-weight: bold;">Wunschtermin</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                            <input type="text" id="datum" name="datum" class="form-control halb-transparent"
+                            <input type="text" id="datum" name="datum" class="form-control"
                                 placeholder="Datum auswählen" required>
                         </div>
                     </div>
@@ -216,7 +151,7 @@
                 <!-- Textarea -->
                 <div class="col-md-4 mb-3">
                     <label for="nachricht" class="form-label fw-bold">Beschreiben Sie Ihr Anliegen bitte</label>
-                    <textarea class="form-control halb-transparent" id="nachricht" rows="4" style="resize: none;"
+                    <textarea class="form-control" id="nachricht" rows="4" style="resize: none;"
                         required></textarea>
                 </div>
 
@@ -228,7 +163,6 @@
         </section>
 
         <script src="kontakt.js"></script>
-        <script src="../background.js"></script>
     </main>
 
     <footer class="bg-dark text-white py-4 mt-0">
