@@ -52,6 +52,20 @@
 
     <!-- Lotti -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        .feedbackError {
+            border: 3px solid red;
+            color: red;
+            max-width: 60%;
+        }
+
+        .feedbackSuccess {
+            border: 3px solid green;
+            color: green;
+            max-width: 60%;
+        }
+    </style>
 </head>
 
 <body>
@@ -161,24 +175,28 @@
             </form>
         </section>
 
+        <hr class="mx-auto my-2" style="width: 80vw; border-top: 5px solid black;">
+
         <section class="container py-5">
             <h3 class="text-center mb-4">Hinterlasse uns eine Spende</h3>
             <p class="text-center mb-5">
                 Wenn dich unsere Inhalte berühren, inspirieren oder dir ganz praktisch weiterhelfen konnten,<br>
                 dann freuen wir uns über deine Wertschätzung in Form einer kleinen Spende.<br>
-                Jeder Beitrag unterstützt unsere Arbeit - und zeigt, dass auch ideelle Überzeugung ihren Wert hat.
+                Jeder Beitrag unterstützt unsere Arbeit - und zeigt, dass Traditionen noch immer ihren Platz haben.
             </p>
 
             <div class="row justify-content-center">
                 <div class="col-md-4 mb-3">
-                    <label for="spendenbetrag" class="form-label">Betrag in €</label>
-                    <input type="number" class="form-control" id="spendenbetrag" placeholder="z.B. 10">
+                    <label for="spendenBetrag" class="form-label">Betrag in €</label>
+                    <input type="number" class="form-control" id="spendenBetrag" placeholder="z.B. 10">
                 </div>
-                <div class="col-md-4 d-flex align-items-end">
-                    <button type="button" class="btn btn-primary w-100">
+                <div class="col-md-4 mb-3">
+                    <label for="spendenBtn" class="form-label">Klicke hier ⬇️</label>
+                    <button type="button" class="btn btn-primary w-100" id="spendenBtn">
                         Jetzt spenden
                     </button>
                 </div>
+                <div id="feedbackBox" class="text-center mt-4 fs-4 feedbackError" style="display: none;">Hier steht text</div>
             </div>
         </section>
 
