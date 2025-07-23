@@ -1,3 +1,4 @@
+const kontaktForm = document.getElementById("kontaktForm");
 const vorname = document.getElementById("vorname");
 const nachname = document.getElementById("nachname");
 const handy = document.getElementById("handy");
@@ -70,8 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.getElementById("kontaktForm").addEventListener("submit", async function (e) {
+kontaktForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    const kontakt_old = kontaktForm.innerHTML;
+
+    kontaktForm.innerHTML = `
+        <dotlottie-wc
+            src='https://lottie.host/f14da36c-e4fe-41ea-839f-bc66cdc0f761/Y0perzQx1j.lottie'
+            style='width: 300px;height: 300px'
+            speed='1'
+            autoplay
+            loop
+        ></dotlottie-wc>
+        `;
 
     // Aktuelles Datum/Uhrzeit erzeugen
     const now = new Date().toLocaleString("de-DE", {
@@ -107,6 +120,7 @@ document.getElementById("kontaktForm").addEventListener("submit", async function
         emailjs.init({
             publicKey: "u4B4SJLcIIxRnNppQ",
         });
+
         // E-Mail an dich
         await emailjs.send("service_cannabee", "template_muv79m6", dataToMe);
 
@@ -116,10 +130,43 @@ document.getElementById("kontaktForm").addEventListener("submit", async function
             email: emailInput.value
         });
 
-        alert("Nachricht erfolgreich gesendet!");
-        e.target.reset();
+        kontaktForm.innerHTML = `
+        <dotlottie-wc
+            id="lottie-success"
+            src="https://lottie.host/2c127db8-e38d-4659-a9a7-9bb3fa4ed6d2/7uNuvDZavJ.lottie"
+            style="width: 300px;height: 300px"
+            speed="1"
+            autoplay
+        ></dotlottie-wc>
+        `;
+
+        const lottieSuccess = document.getElementById("lottie-success");
+        lottieSuccess.addEventListener("complete", () => {
+            kontaktForm.innerHTML = kontakt_old;
+            e.target.reset();
+        });
+
     } catch (error) {
         console.error("Fehler beim Senden:", error);
-        alert("Fehler beim Senden. Bitte versuch es später erneut.");
+
+        kontaktForm.innerHTML = `
+        <div style="text-align: center;">
+            <dotlottie-wc
+            src="https://lottie.host/896ce509-ae92-4a81-88c5-d5be9e8ba791/A1B2aEidDQ.lottie"
+            style="width: 300px;height: 300px"
+            speed="1"
+            autoplay
+            loop
+            ></dotlottie-wc>
+            <p style="color: #b00020; font-weight: bold; margin-top: -20px;">
+            Beim Absenden des Formulars ist ein Fehler aufgetreten.<br />Bitte versuche es später erneut.
+            </p>
+        </div>
+        `;
+
+        setTimeout(() => {
+            kontaktForm.innerHTML = kontakt_old;
+            e.target.reset();
+        }, 5000);
     }
 });
