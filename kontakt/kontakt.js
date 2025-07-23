@@ -1,3 +1,11 @@
+const vorname = document.getElementById("vorname");
+const nachname = document.getElementById("nachname");
+const handy = document.getElementById("handy");
+const emailInput = document.getElementById('email');
+const anfrage = document.getElementById('anfrageArt');
+const datum = document.getElementById('datum');
+const nachricht = document.getElementById('nachricht');
+
 function SetKalender() {
     const today = new Date();
     const in3Weeks = new Date();
@@ -16,7 +24,11 @@ function validateEmail(mail) {
     return emailRegex.test(mail);
 }
 
-const emailInput = document.getElementById('email');
+function validateHandy(nummer) {
+    const nummerRegex = /^(?:\+49|0)(1(?:5[0-9]|6[0-9]|7[0-9]))\d{7,8}$/;
+    return nummerRegex.test(nummer);
+}
+
 emailInput.addEventListener('blur', () => {
     if (!validateEmail(emailInput.value)) {
         emailInput.setCustomValidity('Bitte gib eine gültige E-Mail-Adresse ein.');
@@ -26,11 +38,16 @@ emailInput.addEventListener('blur', () => {
     emailInput.reportValidity();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('anfrageArt');
-    const nachricht = document.getElementById('nachricht');
-    const datum = document.getElementById('datum');
+handy.addEventListener('blur', () => {
+    if (validateHandy(handy.value)) {
+        handy.setCustomValidity('Bitte gib eine gültige Handynummer ein.');
+    } else {
+        handy.setCustomValidity('');
+    }
+    handy.reportValidity();
+})
 
+document.addEventListener('DOMContentLoaded', () => {
     // Begrenze Datumsauswahl auf die nächsten 3 Wochen
     const today = new Date();
     const in3Weeks = new Date();
@@ -39,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     SetKalender();
 
     // Dynamischer Platzhalter im Nachrichtenfeld
-    select.addEventListener('change', () => {
-        const option = select.value;
+    anfrage.addEventListener('change', () => {
+        const option = anfrage.value;
         if (option === 'honig') {
             nachricht.placeholder = 'Zbs.: 3 Gläser Raps, 2 Gläser Robinie, 1 Glas Früchtracht';
         } else if (option === 'workshop') {
@@ -51,4 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
             nachricht.placeholder = '';
         }
     });
+});
+
+document.getElementById("kontaktForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // Verhindert das Standard-Formularverhalten
+
+    const data = {
+        vorname: vorname.value,
+        nachname: nachname.value,
+        handy: handy.value,
+        email: emailInput.value,
+        anfrage: anfrage.value,
+        datum: datum.value,
+        nachricht: nachricht.value
+    };
+
+    try {
+        const response = await fetch("http://176.100.37.241:6401/cannabee/anfrage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            console.log("Anfrage erfolgreich gesendet");
+            // z.B. Erfolgsnachricht anzeigen
+        } else {
+            console.error("Fehler beim Senden der Anfrage");
+        }
+    } catch (err) {
+        console.error("Netzwerkfehler:", err);
+    }
 });
