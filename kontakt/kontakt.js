@@ -104,8 +104,9 @@ document.getElementById("kontaktForm").addEventListener("submit", async function
 
     try {
         // Init EmailJS
-        emailjs.init("u4B4SJLcIIxRnNppQ");
-
+        emailjs.init({
+            publicKey: "u4B4SJLcIIxRnNppQ",
+        });
         // E-Mail an dich
         await emailjs.send("service_cannabee", "template_muv79m6", dataToMe);
 
