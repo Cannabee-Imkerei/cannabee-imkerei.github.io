@@ -40,7 +40,7 @@ emailInput.addEventListener('blur', () => {
 
 handy.addEventListener('blur', () => {
     if (validateHandy(handy.value)) {
-        handy.setCustomValidity('Bitte gib eine gültige Handynummer ein.');
+        handy.setCustomValidity('Bitte gib eine gültige Handynummer ein.\nLasse dabei die führende Null weg!\nZbs: 15212345678');
     } else {
         handy.setCustomValidity('');
     }
