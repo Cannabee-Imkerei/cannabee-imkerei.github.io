@@ -83,10 +83,13 @@ document.getElementById("kontaktForm").addEventListener("submit", async function
     });
 
     // Datenobjekt für deine eigene E-Mail
+    const rawHandy = handy.value.trim();
+    const cleanHandy = rawHandy.replace(/^(\+|0+)/, "");
+
     const dataToMe = {
         vorname: vorname.value,
         nachname: nachname.value,
-        handy: handy.value,
+        handy: cleanHandy,
         email: emailInput.value,
         anfrage: anfrage.value,
         datum: datum.value,
