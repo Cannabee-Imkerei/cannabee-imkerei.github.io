@@ -71,9 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById("kontaktForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // Verhindert das Standard-Formularverhalten
+    e.preventDefault();
 
-    const data = {
+    // Aktuelles Datum/Uhrzeit erzeugen
+    const now = new Date().toLocaleString("de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    // Datenobjekt für deine eigene E-Mail
+    const dataToMe = {
         vorname: vorname.value,
         nachname: nachname.value,
         handy: handy.value,
@@ -83,22 +93,29 @@ document.getElementById("kontaktForm").addEventListener("submit", async function
         nachricht: nachricht.value
     };
 
+    // Datenobjekt für Bestätigungsmail an den Kunden
+    const dataToUser = {
+        name: `${vorname.value} ${nachname.value}`,
+        time: now
+    };
+
     try {
-        const response = await fetch("http://176.100.37.241:6401/cannabee/anfrage", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+        // Init EmailJS
+        emailjs.init("u4B4SJLcIIxRnNppQ");
+
+        // E-Mail an dich
+        await emailjs.send("service_cannabee", "template_muv79m6", dataToMe);
+
+        // E-Mail an Kunde
+        await emailjs.send("service_cannabee", "template_11p1tow", {
+            ...dataToUser,
+            email: emailInput.value
         });
 
-        if (response.ok) {
-            console.log("Anfrage erfolgreich gesendet");
-            // z.B. Erfolgsnachricht anzeigen
-        } else {
-            console.error("Fehler beim Senden der Anfrage");
-        }
-    } catch (err) {
-        console.error("Netzwerkfehler:", err);
+        alert("Nachricht erfolgreich gesendet!");
+        e.target.reset();
+    } catch (error) {
+        console.error("Fehler beim Senden:", error);
+        alert("Fehler beim Senden. Bitte versuch es später erneut.");
     }
 });
