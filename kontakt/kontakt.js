@@ -76,6 +76,7 @@ kontaktForm.addEventListener("submit", async function (e) {
 
     const kontakt_old = kontaktForm.innerHTML;
 
+    // Lade Animation
     kontaktForm.innerHTML = `
         <dotlottie-wc
             src='https://lottie.host/f14da36c-e4fe-41ea-839f-bc66cdc0f761/Y0perzQx1j.lottie'
@@ -130,6 +131,7 @@ kontaktForm.addEventListener("submit", async function (e) {
             email: emailInput.value
         });
 
+        // Bestätigung Animation
         kontaktForm.innerHTML = `
         <dotlottie-wc
             id="lottie-success"
@@ -140,11 +142,24 @@ kontaktForm.addEventListener("submit", async function (e) {
         ></dotlottie-wc>
         `;
 
-        const lottieSuccess = document.getElementById("lottie-success");
-        lottieSuccess.addEventListener("complete", () => {
-            kontaktForm.innerHTML = kontakt_old;
-            e.target.reset();
-        });
+        // Warte kurz bis DOM aktualisiert ist
+        setTimeout(() => {
+            const lottieElement = document.getElementById("lottie-success");
+
+            // warte bis Shadow DOM geladen ist
+            const interval = setInterval(() => {
+                const player = lottieElement.shadowRoot?.querySelector("lottie-player");
+                if (player) {
+                    clearInterval(interval);
+
+                    // Eventlistener anhängen
+                    player.addEventListener("complete", () => {
+                        kontaktForm.innerHTML = kontakt_old;
+                        e.target.reset();
+                    });
+                }
+            }, 50);
+        }, 100);
 
     } catch (error) {
         console.error("Fehler beim Senden:", error);
