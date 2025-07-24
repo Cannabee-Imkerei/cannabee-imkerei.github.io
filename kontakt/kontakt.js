@@ -134,32 +134,22 @@ kontaktForm.addEventListener("submit", async function (e) {
         // Bestätigung Animation
         kontaktForm.innerHTML = `
         <dotlottie-wc
-            id="lottie-success"
             src="https://lottie.host/2c127db8-e38d-4659-a9a7-9bb3fa4ed6d2/7uNuvDZavJ.lottie"
             style="width: 300px;height: 300px"
             speed="1"
             autoplay
         ></dotlottie-wc>
+        <p style="color: #00b015ff; font-weight: bold; margin-top: -20px;">
+            Deine Anfrage wurde erfolgreich gesendet.<br />
+            Bitte schaue in deinen Emails nach der Bestätigung.<br />
+            Solltest du sie nicht finden, schaue bitte auch in den Spam-Ordner!
+        </p>
         `;
 
-        // Warte kurz bis DOM aktualisiert ist
         setTimeout(() => {
-            const lottieElement = document.getElementById("lottie-success");
-
-            // warte bis Shadow DOM geladen ist
-            const interval = setInterval(() => {
-                const player = lottieElement.shadowRoot?.querySelector("lottie-player");
-                if (player) {
-                    clearInterval(interval);
-
-                    // Eventlistener anhängen
-                    player.addEventListener("complete", () => {
-                        kontaktForm.innerHTML = kontakt_old;
-                        e.target.reset();
-                    });
-                }
-            }, 50);
-        }, 100);
+            kontaktForm.innerHTML = kontakt_old;
+            e.target.reset();
+        }, 3500);
 
     } catch (error) {
         console.error("Fehler beim Senden:", error);
@@ -174,7 +164,7 @@ kontaktForm.addEventListener("submit", async function (e) {
             loop
             ></dotlottie-wc>
             <p style="color: #b00020; font-weight: bold; margin-top: -20px;">
-            Beim Absenden des Formulars ist ein Fehler aufgetreten.<br />Bitte versuche es später erneut.
+                Beim Absenden des Formulars ist ein Fehler aufgetreten.<br />Bitte versuche es später erneut.
             </p>
         </div>
         `;
