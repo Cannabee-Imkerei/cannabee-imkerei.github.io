@@ -139,7 +139,7 @@ kontaktForm.addEventListener("submit", async function (e) {
             speed="1"
             autoplay
         ></dotlottie-wc>
-        <p style="color: #00b015ff; font-weight: bold; margin-top: -20px;">
+        <p class="text-center" style="color: #00b015ff; font-weight: bold; margin-top: -20px;">
             Deine Anfrage wurde erfolgreich gesendet.<br />
             Bitte schaue in deinen Emails nach der Bestätigung.<br />
             Solltest du sie nicht finden, schaue bitte auch in den Spam-Ordner!
@@ -149,7 +149,7 @@ kontaktForm.addEventListener("submit", async function (e) {
         setTimeout(() => {
             kontaktForm.innerHTML = kontakt_old;
             e.target.reset();
-        }, 3500);
+        }, 5000);
 
     } catch (error) {
         console.error("Fehler beim Senden:", error);
@@ -163,7 +163,7 @@ kontaktForm.addEventListener("submit", async function (e) {
             autoplay
             loop
             ></dotlottie-wc>
-            <p style="color: #b00020; font-weight: bold; margin-top: -20px;">
+            <p class="text-center" style="color: #b00020; font-weight: bold; margin-top: -20px;">
                 Beim Absenden des Formulars ist ein Fehler aufgetreten.<br />Bitte versuche es später erneut.
             </p>
         </div>
