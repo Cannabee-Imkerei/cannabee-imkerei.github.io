@@ -12,5 +12,12 @@
     "excerpt": "Heute reden wir über Menschen, Honigbienen und Wildbienen. Deren zusammenleben...oder doch gegeneinander?",
     "thumbnail": "../hero.jpg",
     "type": "beitrag"
+  },
+  {
+    "slug": "blog_003",
+    "title": "Varroa - vom Menschen verursachtes Leid?",
+    "excerpt": "Heute reden wir über Varroa und die Rolle, die wir Menschen dabei spielen.",
+    "thumbnail": "../hero.jpg",
+    "type": "beitrag"
   }
 ]

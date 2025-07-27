@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${blog.title}</h5>
                     <p class="card-text text-muted">${blog.excerpt}</p>
-                    <a href="https://cannabee-imkerei.github.io/blog/${blog.slug}/index.html" class="btn btn-outline-primary mt-auto">Beitrag lesen</a>
+                    <a href="https://cannabee-imkerei.github.io/blog/${blog.slug}/" class="btn btn-outline-primary mt-auto">Beitrag lesen</a>
                 </div>
                 </div>
             `;
